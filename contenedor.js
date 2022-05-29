@@ -56,7 +56,6 @@ class Contenedor {
         this.productos.push({ "title": title, "price": price, "thumbnail": thumbnail,"id": id })
         console.log(this.productos)
         await this.write()
-
     }
 
 
