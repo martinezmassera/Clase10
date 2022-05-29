@@ -5,6 +5,7 @@ const Contenedor = require('./contenedor')
 const prod = new Contenedor('./productos.json')
 
 const app = express()
+const PORT = process.env.PORT || 8080
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
@@ -60,7 +61,7 @@ router.delete('/:id', async (req, res) => {
 })
 
 app.use('/api/productos', router)
-const PORT = process.env.PORT || 8080
+
 const server = app.listen(PORT, () => {
     console.log(`Servidor http en el puerto ${PORT}`)
 })
