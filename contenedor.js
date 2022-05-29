@@ -45,7 +45,6 @@ class Contenedor {
 
     async addItem(body) {
         const id = this.countId()
-
         body['id'] = id
         this.productos.push(body)
         console.log(body)
