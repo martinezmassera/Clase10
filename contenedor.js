@@ -56,7 +56,7 @@ class Contenedor {
         const id = this.countId()
         this.productos.push({ "title": title, "price": price, "thumbnail": thumbnail,"id": id })
         console.log(this.productos)
-        //await this.write()
+        await this.write()
 
     }
 
@@ -70,7 +70,7 @@ class Contenedor {
                 this.productos.splice(index, 1)
             }
             console.log(this.productos)
-            //await this.write()
+            await this.write()
         }
         catch (error) {
             return { error: 'producto no encontrado' }
@@ -84,7 +84,7 @@ class Contenedor {
             aEditar[index] = { ...aEditar[index], ...body }
             this.productos = aEditar
             console.log(this.productos)
-            //await this.write()
+            await this.write()
         } catch (error) {
             return { error: 'producto no encontrado' }
         }
