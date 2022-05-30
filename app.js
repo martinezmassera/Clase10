@@ -23,13 +23,13 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage })
 
-app.post('/upload', upload.single('file'),(req, res) => {
+app.post('/upload', upload.single('file'),async (req, res) => {
     const name = req.body.name;
     const price = req.body.price;
     const thumbnail = req.body.thumbnail;
     const img = req.file.filename;
     console.log(img)
-    prod.addItemForm(name, price, img)
+   await prod.addItemForm(name, price, img)
     res.send(`<h1>${name}</h1><br><h1>$ ${price}</h1><br><h1>${thumbnail}</h1><br><img src=/file/${img} />`)
 })
 
