@@ -11,7 +11,7 @@ class Contenedor {
             const datos = await fs.promises.readFile(this.archivo)
             const datosParse = JSON.parse(datos)
             this.productos = datosParse
-            return this.productos
+            return datosParse
         } catch (error) {
             return { error: 'archivo no encontrado' }
         }
@@ -54,6 +54,7 @@ class Contenedor {
         this.productos.push(body)
         console.log(body)
         await this.write()
+        return 'Producto Agregad0'
     }
 
     async addItemForm(title, price, thumbnail) {
@@ -67,7 +68,6 @@ class Contenedor {
         this.productos.push({ "title": title, "price": price, "thumbnail": thumbnail, "id": id })
         console.log(this.productos)
         await this.write()
-
     }
 
 
