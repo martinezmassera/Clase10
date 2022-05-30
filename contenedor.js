@@ -44,6 +44,10 @@ class Contenedor {
     }
 
     async addItem(body) {
+        const leer = await this.leer()
+        if(leer.length<1){
+            countId=1
+        }
         const id = this.countId()
         body['id'] = id
         this.productos.push(body)
@@ -52,6 +56,9 @@ class Contenedor {
     }
 
     async addItemForm(title, price, thumbnail) {
+        if(leer.length<1){
+            countId=1
+        }
         const id = this.countId()
         this.productos.push({ "title": title, "price": price, "thumbnail": thumbnail,"id": id })
         console.log(this.productos)

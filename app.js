@@ -5,7 +5,9 @@ const Contenedor = require('./contenedor')
 const prod = new Contenedor('./productos.json')
 
 const app = express()
+
 const PORT = process.env.PORT || 8080
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
@@ -15,8 +17,8 @@ const storage = multer.diskStorage({
         cb(null, 'public/file/')
     },
     filename: (req, file, cb) => {
-        const t = Date.now()
-        cb(null, t + file.originalname)
+        
+        cb(null, Date.now()+file.originalname)
 
     }
 })
