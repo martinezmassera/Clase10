@@ -66,9 +66,9 @@ class Contenedor {
             const index = this.productos.findIndex((item) => item.id == number)
             if (index != -1) {
                 this.productos.splice(index, 1)
+                await this.write()
             }
-            console.log(this.productos)
-            await this.write()
+            
         }
         catch (error) {
             return { error: 'producto no encontrado' }
