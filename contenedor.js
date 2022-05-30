@@ -45,8 +45,8 @@ class Contenedor {
 
     async addItem(body) {
         const leer = await this.leer()
-        if(leer.length<1){
-            countId=1
+        if (leer.length < 1) {
+            countId = 1
         }
         const id = this.countId()
         body['id'] = id
@@ -56,11 +56,12 @@ class Contenedor {
     }
 
     async addItemForm(title, price, thumbnail) {
-        if(leer.length<1){
-            countId=1
+        const leer = await this.leer()
+        if (leer.length < 1) {
+            countId = 1
         }
         const id = this.countId()
-        this.productos.push({ "title": title, "price": price, "thumbnail": thumbnail,"id": id })
+        this.productos.push({ "title": title, "price": price, "thumbnail": thumbnail, "id": id })
         console.log(this.productos)
         await this.write()
 
@@ -76,7 +77,7 @@ class Contenedor {
                 this.productos.splice(index, 1)
                 await this.write()
             }
-         
+
         }
         catch (error) {
             return { error: 'producto no encontrado' }
