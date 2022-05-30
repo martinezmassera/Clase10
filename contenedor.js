@@ -46,6 +46,8 @@ class Contenedor {
         const leer = await this.leer()
         if (leer.length < 1) {
             countId = 1
+        }else {
+            countId = leer.length +1
         }
         const id = this.countId()
         body['id'] = id
@@ -58,6 +60,8 @@ class Contenedor {
         const leer = await this.leer()
         if (leer.length < 1) {
             countId = 1
+        }else {
+            countId = leer.length +1
         }
         const id = this.countId()
         this.productos.push({ "title": title, "price": price, "thumbnail": thumbnail, "id": id })
