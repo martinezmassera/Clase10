@@ -33,7 +33,6 @@ class Contenedor {
                 return item
             }
         } catch (error) {
-            return { error: 'producto no encontrado' }
         }
     }
 
@@ -75,9 +74,11 @@ class Contenedor {
             const index = this.productos.findIndex((item) => item.id == number)
             if (index != -1) {
                 this.productos.splice(index, 1)
-                await this.write()
+                await this.write();
+                return { ok: 'Eliminado' }
+            } else {
+                return { error: 'producto no encontrado' }
             }
-
         }
         catch (error) {
             return { error: 'producto no encontrado' }
@@ -92,6 +93,11 @@ class Contenedor {
             this.productos = aEditar
             console.log(this.productos)
             await this.write()
+            if (index != -1) {
+                return { ok: 'Producto editado' }
+            } else {
+                return { error: 'producto no encontrado' }
+            }
         } catch (error) {
             return { error: 'producto no encontrado' }
         }

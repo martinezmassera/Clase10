@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
         cb(null, 'public/file')
     },
     filename: (req, file, cb) => {
-        
+
         cb(null, file.originalname)
 
     }
@@ -53,13 +53,12 @@ router.post('/', (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
-    await prod.editById(req.params.id, req.body)
-    res.send('producto actualizado')
+   
+    res.send( await prod.editById(req.params.id, req.body))
 })
 
 router.delete('/:id', async (req, res) => {
-    await prod.deleteById(req.params.id)
-    res.send('producto eliminado')
+    res.send(await prod.deleteById(req.params.id))
 })
 
 app.use('/api/productos', router)
