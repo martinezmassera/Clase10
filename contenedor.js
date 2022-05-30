@@ -11,7 +11,7 @@ class Contenedor {
             const datos = await fs.promises.readFile(this.archivo)
             const datosParse = JSON.parse(datos)
             this.productos = datosParse
-            return this.productos
+            return datosParse
         } catch (error) {
             return { error: 'archivo no encontrado' }
         }
