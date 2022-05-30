@@ -11,6 +11,9 @@ class Contenedor {
             const datos = await fs.promises.readFile(this.archivo)
             const datosParse = JSON.parse(datos)
             this.productos = datosParse
+            if(datos.length == 0){
+                countId = 1
+            }
             return datosParse
         } catch (error) {
             return { error: 'archivo no encontrado' }
