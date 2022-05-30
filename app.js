@@ -30,7 +30,7 @@ app.post('/upload', upload.single('file'),(req, res) => {
     const img = req.file.filename;
     console.log(img)
     prod.addItemForm(name, price, img)
-    res.send(`<h1>${name}</h1><br><h1>$ ${price}</h1><br><h1>${thumbnail}</h1><br><img src=/file/${img} />`)
+    res.send(`<h1>${name}</h1><br><h1>$ ${price}</h1><br><h1>${thumbnail}</h1><br><img src=./public/file/${img} />`)
 })
 
 
