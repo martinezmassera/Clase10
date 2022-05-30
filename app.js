@@ -8,15 +8,15 @@ const app = express()
 const PORT = process.env.PORT || 8080
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static(__dirname + './public'))
+app.use(express.static('public'))
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, '/file/')
+        cb(null, 'public/file/')
     },
     filename: (req, file, cb) => {
-        const t = 
-        cb(null, Date.now() + file.originalname)
+        const t = Date.now()
+        cb(null, t + file.originalname)
 
     }
 })
@@ -30,7 +30,7 @@ app.post('/upload', upload.single('file'),(req, res) => {
     const img = req.file.filename;
     console.log(img)
     prod.addItemForm(name, price, img)
-    res.send(`<h1>${name}</h1><br><h1>$ ${price}</h1><br><h1>${thumbnail}</h1><br><img src=./public/file/${img} />`)
+    res.send(`<h1>${name}</h1><br><h1>$ ${price}</h1><br><h1>${thumbnail}</h1><br><img src=/file/${img} />`)
 })
 
 
