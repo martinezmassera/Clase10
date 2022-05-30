@@ -18,14 +18,14 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         
-        cb(null, Date.now()+file.originalname)
+        cb(null, file.originalname)
 
     }
 })
 
 const upload = multer({ storage })
 
-app.post('/upload', upload.single('file'),(req, res) => {
+app.post('/upload', upload.single('file'), (req, res) => {
     const name = req.body.name;
     const price = req.body.price;
     const thumbnail = req.body.thumbnail;
