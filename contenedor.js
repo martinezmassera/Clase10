@@ -56,11 +56,11 @@ class Contenedor {
     }
 
     async addItemForm(title, price, thumbnail) {
-        const leer = await this.leer()
-        console.log(leer.length)
-        if (leer.length<1){
-          countId = 1
-        }
+        // const leer = await this.leer()
+        // console.log(leer.length)
+        // if (leer.length<1){
+        //   countId = 1
+        // }
         const id = this.countId()
         this.productos.push({ "title": title, "price": price, "thumbnail": thumbnail, "id": id })
         console.log(this.productos)
