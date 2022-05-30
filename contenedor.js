@@ -11,9 +11,6 @@ class Contenedor {
             const datos = await fs.promises.readFile(this.archivo)
             const datosParse = JSON.parse(datos)
             this.productos = datosParse
-            if(datos.length == 0){
-                countId = 1
-            }
             return datosParse
         } catch (error) {
             return { error: 'archivo no encontrado' }
@@ -41,7 +38,10 @@ class Contenedor {
     }
 
     countId() {
-
+        const leer = this.leer()
+        // if(leer.length == 0){
+        //     countId = 1
+        // }
         const id = countId++;
         return id
     }
@@ -56,7 +56,7 @@ class Contenedor {
 
     async addItemForm(title, price, thumbnail) {
         const id = this.countId()
-        this.productos.push({ "title": title, "price": price, "thumbnail": thumbnail,"id": id })
+        this.productos.push({ "title": title, "price": price, "thumbnail": thumbnail, "id": id })
         console.log(this.productos)
         await this.write()
     }
@@ -71,7 +71,7 @@ class Contenedor {
                 this.productos.splice(index, 1)
                 await this.write()
             }
-            
+
         }
         catch (error) {
             return { error: 'producto no encontrado' }
