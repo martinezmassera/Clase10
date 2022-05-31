@@ -57,15 +57,11 @@ class Contenedor {
     }
 
     async addItemForm(title, price, thumbnail) {
-
         const id = await this.countId()
         this.productos.push({ "title": title, "price": price, "thumbnail": thumbnail, "id": id })
         console.log(this.productos)
         await this.write()
     }
-
-
-
 
     async deleteById(number) {
         try {
