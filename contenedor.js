@@ -36,20 +36,19 @@ class Contenedor {
         }
     }
 
-    countId() {
-
-        const id = countId++;
-        return id
-    }
-
-    async addItem(body) {
+  async  countId() {
         const leer = await this.leer()
         if (leer.length < 1) {
             countId = 1
         }else {
-            countId = leer.length +1
+            countId++;
         }
-        const id = this.countId()
+        const id = countId;
+        return id
+    }
+
+    async addItem(body) {
+        const id = await this.countId()
         body['id'] = id
         this.productos.push(body)
         console.log(body)
@@ -58,13 +57,8 @@ class Contenedor {
     }
 
     async addItemForm(title, price, thumbnail) {
-        const leer = await this.leer()
-        if (leer.length < 1) {
-            countId = 1
-        }else {
-            countId = leer.length +1
-        }
-        const id = this.countId()
+     
+        const id = await this.countId()
         this.productos.push({ "title": title, "price": price, "thumbnail": thumbnail, "id": id })
         console.log(this.productos)
         await this.write()
