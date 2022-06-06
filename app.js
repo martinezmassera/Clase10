@@ -26,7 +26,9 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage })
-
+app.get('/productos', (req, res)=>{
+    res.render('products.ejs')
+})
 app.post('/productos', upload.single('file'), (req, res) => {
     const name = req.body.name;
     const price = req.body.price;
