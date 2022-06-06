@@ -7,8 +7,6 @@ const prod = new Contenedor('./productos.json')
 const app = express()
 
 const PORT = process.env.PORT || 8080
-app.set('views','./views')
-app.set('view engine', 'ejs')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -27,27 +25,26 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage })
 
-app.post('/productos', upload.single('file'), (req, res) => {
+app.post('/upload', upload.single('file'), (req, res) => {
     const name = req.body.name;
     const price = req.body.price;
     const thumbnail = req.body.thumbnail;
     const img = req.file.filename;
     console.log(img)
     prod.addItemForm(name, price, img)
-    res.render('products.ejs')
+    res.send(`<h1>${name}</h1><br><h1>$ ${price}</h1><br><h1>${thumbnail}</h1><br><img src=/file/${img} />`)
 })
+
 
 const router = Router()
 router.get('/', async (req, res) => {
-    const leer = await prod.leer()
-    res.render('viewProducts.ejs',{ leer })
+    res.send(await prod.leer())
 })
 
 router.get('/:id', async (req, res) => {
     const id = req.params.id
     res.send(await prod.getId(id))
 })
-
 
 router.post('/', (req, res) => {
     const body = req.body
