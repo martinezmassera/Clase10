@@ -11,39 +11,53 @@
 <body>
     <div class="container">
         <div class="row">
+            <input type="text" onChange="document.links.enlace.href='/api/productos/'+this.value;">
+
+            <a href="" name="enlace">borrar</a>
             
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Precio</th>
-                <th scope="col">thumbnail</th>
-                <th scope="col">Imágen</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% leer.forEach(element=> { %>
-                <tr>
-                    <td>
-                        <%= element.title %>
-                    </td>
-                    <td>$ <%= element.price %>
-                    </td>
-                    <td>
-                        <%= element.thumbnail %>
-                    </td>
-                    <td><img src="/file/<%= element.thumbnail %>" alt="" class="img-responsive" style="width:200px; height: 100px"></td>
-                </tr>
+                    <table class="table">
 
-                <% }); %>
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">thumbnail</th>
+                                <th scope="col">Imágen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% leer.forEach(element=> { %>
+                                <tr>
+                                    <td>
+                                        <%= element.title %>
+                                    </td>
+                                    <td>$ <%= element.price %>
+                                    </td>
+                                    <td>
+                                        <%= element.thumbnail %>
+                                    </td>
+                                    <td><img src="/file/<%= element.thumbnail %>" alt="" class="img-responsive"
+                                            style="width:200px; height: 100px"></td>
+                                    <td><a href="/api/productos/deleted/<%= element.id %>">borrar</a></td>
+                                </tr>
 
-        </tbody>
-    </table>
+                                <% }); %>
+
+<td><% leer %></td>
+                        </tbody>
+                    </table>
+                    
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script>
+        const getValueInput = () => {
+            let inputValue = document.getElementById("domTextElement").value;
+            document.getElementById("valueInput").innerHTML = inputValue;
+        }
+    </script>
 </body>
 
 </html>

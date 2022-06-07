@@ -7,7 +7,7 @@ const prod = new Contenedor('./productos.json')
 const app = express()
 
 const PORT = process.env.PORT || 8080
-app.set('views','./views')
+app.set('views', './views')
 app.set('view engine', 'ejs')
 
 app.use(express.json())
@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage })
-app.get('/productos', (req, res)=>{
+app.get('/productos', (req, res) => {
     res.render('products.ejs')
 })
 app.post('/productos', upload.single('file'), (req, res) => {
@@ -42,12 +42,7 @@ app.post('/productos', upload.single('file'), (req, res) => {
 const router = Router()
 router.get('/', async (req, res) => {
     const leer = await prod.leer()
-    res.render('viewProducts.ejs',{ leer })
-})
-
-router.get('/:id', async (req, res) => {
-    const id = req.params.id
-    res.send(await prod.getId(id))
+    res.render('viewProducts.ejs', { leer })
 })
 
 
@@ -57,14 +52,19 @@ router.post('/', (req, res) => {
     res.send('producto agregado')
 })
 
-router.put('/:id', async (req, res) => {
-   
-    res.send( await prod.editById(req.params.id, req.body))
+router.get('/:id', async (req, res) => {
+    const leer = await prod.getId(parseInt(req.params.id))
+    console.log(leer)
+    // res.send('producto agregado')
+
+    res.render('viewProducts.ejs',{ leer })
 })
 
-router.delete('/:id', async (req, res) => {
-    res.send(await prod.deleteById(req.params.id))
+router.get('/deleted/:id', async (req, res) => {
+    const leer = await prod.deleteById(req.params.id)
+    res.render('viewProducts.ejs', { leer,p })
 })
+
 
 app.use('/api/productos', router)
 

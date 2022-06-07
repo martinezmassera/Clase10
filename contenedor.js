@@ -26,12 +26,7 @@ class Contenedor {
         try {
             const leer = await this.leer()
             const item = leer.find(i => i.id == id)
-            console.log(item)
-            if (!item) {
-                return { error: 'producto no encontrado' }
-            } else {
-                return item
-            }
+            return item != undefined ? item : null
         } catch (error) {
         }
     }
@@ -69,7 +64,8 @@ class Contenedor {
             if (index != -1) {
                 this.productos.splice(index, 1)
                 await this.write();
-                return { ok: 'Eliminado' }
+                return await this.leer()
+
             } else {
                 return { error: 'producto no encontrado' }
             }
