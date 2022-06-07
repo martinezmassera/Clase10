@@ -24,9 +24,15 @@ class Contenedor {
 
     async getId(id) {
         try {
+            const temp = []
             const leer = await this.leer()
             const item = leer.find(i => i.id == id)
-            return item != undefined ? item : null
+            temp.push(item)
+            if (!item) {
+                return
+            } else {
+                return temp
+            }
         } catch (error) {
         }
     }
@@ -67,11 +73,11 @@ class Contenedor {
                 return await this.leer()
 
             } else {
-                return { error: 'producto no encontrado' }
+                return 
             }
         }
         catch (error) {
-            return { error: 'producto no encontrado' }
+            return 
         }
     }
 

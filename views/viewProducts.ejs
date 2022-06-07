@@ -5,59 +5,73 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Vista productos</title>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+    
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link " href="/productos">Formulario carga de productos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active"  aria-current="page"  href="/api/productos">Productos</a>
+              </li>
+          </div>
+        </div>
+      </nav>
     <div class="container">
         <div class="row">
-            <input type="text" onChange="document.links.enlace.href='/api/productos/'+this.value;">
+            <div class="col-md-4 col-sm-12 m-4">
+                <input type="text" onChange="document.links.enlace.href='/api/productos/'+this.value;">
+                <a href="" name="enlace" class="btn btn-primary" >BUSCAR</a>
+            </div>
+        </div>
+        <div class="row">
+           
 
-            <a href="" name="enlace">borrar</a>
-            
+            <% if (leer==undefined || leer.length < 0){ %>
+                <h1>Producto no encontrado</h1>
+                <% } else {%>
                     <table class="table">
-
                         <thead>
                             <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Precio</th>
-                                <th scope="col">thumbnail</th>
-                                <th scope="col">Imágen</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">Nombre</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">Precio</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">thumbnail</th>
+                                <th scope="col" style="text-align: center; vertical-align: middle;">Imágen</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <% leer.forEach(element=> { %>
                                 <tr>
-                                    <td>
+                                    <td style="text-align: center; vertical-align: middle;">
                                         <%= element.title %>
                                     </td>
-                                    <td>$ <%= element.price %>
+                                    <td style="text-align: center; vertical-align: middle;">$ <%= element.price %>
                                     </td>
-                                    <td>
+                                    <td style="text-align: center; vertical-align: middle;">
                                         <%= element.thumbnail %>
                                     </td>
-                                    <td><img src="/file/<%= element.thumbnail %>" alt="" class="img-responsive"
+                                    <td style="text-align: center; vertical-align: middle;"><img src="/file/<%= element.thumbnail %>" alt="" class="img-responsive"
                                             style="width:200px; height: 100px"></td>
-                                    <td><a href="/api/productos/deleted/<%= element.id %>">borrar</a></td>
+                                    <td style="text-align: center; vertical-align: middle;"><a href="/api/productos/deleted/<%= element.id %>">borrar</a></td>
                                 </tr>
-
-                                <% }); %>
-
-<td><% leer %></td>
+                            <% }); %>
                         </tbody>
                     </table>
-                    
+                <% } %>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    <script>
-        const getValueInput = () => {
-            let inputValue = document.getElementById("domTextElement").value;
-            document.getElementById("valueInput").innerHTML = inputValue;
-        }
-    </script>
+
 </body>
 
 </html>

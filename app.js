@@ -53,16 +53,14 @@ router.post('/', (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    const leer = await prod.getId(parseInt(req.params.id))
-    console.log(leer)
-    // res.send('producto agregado')
-
-    res.render('viewProducts.ejs',{ leer })
+    const leer = await prod.getId(parseInt(req.params.id)) 
+    res.render('viewProducts.ejs', { leer })
 })
 
 router.get('/deleted/:id', async (req, res) => {
     const leer = await prod.deleteById(req.params.id)
-    res.render('viewProducts.ejs', { leer,p })
+
+ res.render('viewProducts.ejs', { leer })
 })
 
 
