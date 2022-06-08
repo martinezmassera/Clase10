@@ -55,7 +55,6 @@ router.get('/deleted/:id', async (req, res) => {
     res.render('viewProducts.ejs', { leer })
 })
 
-
 app.use('/api/productos', router)
 
 const server = app.listen(PORT, () => {
