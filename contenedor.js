@@ -71,7 +71,6 @@ class Contenedor {
                 this.productos.splice(index, 1)
                 await this.write();
                 return await this.leer()
-
             } else {
                 return 
             }
